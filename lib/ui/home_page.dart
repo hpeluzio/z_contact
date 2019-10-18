@@ -105,8 +105,75 @@ class _HomePageState extends State<HomePage> {
       ),
       onTap: () {
         //print('ENTROU AQUI');
-        _showContactPage(contact: contacts[index]);
+        _showOptions(context, index);
+        //_showContactPage(contact: contacts[index]);
       },
+    );
+  }
+
+  void _showOptions(BuildContext context, int index) {
+    showModalBottomSheet(
+      context: context, 
+      builder: (context) {
+        return BottomSheet(
+          onClosing: () {},
+          builder: (context) {
+            return Container (
+              padding: EdgeInsets.all(10),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: 
+                      FlatButton(
+                        child: Text(
+                          'Ligar', 
+                          style: TextStyle(color: Colors.red, fontSize: 20),
+                        ),
+                        onPressed: () {
+                          
+                        },
+                      ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: 
+                      FlatButton(
+                        child: Text(
+                          'Editar', 
+                          style: TextStyle(color: Colors.red, fontSize: 20),
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                          _showContactPage(contact: contacts[index]);
+                        },
+                      ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: 
+                      FlatButton(
+                        child: Text(
+                          'Excluir', 
+                          style: TextStyle(color: Colors.red, fontSize: 20),
+                        ),
+                        onPressed: () {
+                          helper.deleteContact(contacts[index].id);
+                          setState(() {
+                            contacts.removeAt(index);
+                            Navigator.pop(context);
+                          });
+                        },
+                      ),
+                  ),
+                ],
+              ),
+            );
+          },
+
+        );
+      }
     );
   }
 
