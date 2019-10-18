@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:z_contact/helpers/contact_helper.dart';
 import 'package:z_contact/ui/contact_page.dart';
 import 'dart:io';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -132,7 +133,8 @@ class _HomePageState extends State<HomePage> {
                           style: TextStyle(color: Colors.red, fontSize: 20),
                         ),
                         onPressed: () {
-                          
+                          launch('tel:${contacts[index].phone}');
+                          Navigator.pop(context);
                         },
                       ),
                   ),
