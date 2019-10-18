@@ -26,7 +26,7 @@ class ContactHelper {
     }
   }
 
-  Future<Database> initDb()  async{
+  Future<Database> initDb() async{
     final databasesPath = await getDatabasesPath();
     final path = join(databasesPath, "contacts2.db");
 
